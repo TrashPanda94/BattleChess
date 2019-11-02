@@ -1,0 +1,5 @@
+Version History
+
+1. Polymorphic design of Tile objects.
+
+2. Immutability for all EmptyTile objects.
