@@ -8,3 +8,4 @@ Version History
     Stub for Alliance, Board, Moce class
     Make EmptyTile and OccupiedTile constructor private for the sake of immutability
 
+4. Implementing Knight Class

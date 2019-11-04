@@ -18,6 +18,8 @@ public abstract class Piece {
     // Calculate legal moves
     public abstract List<Move> calculateLeagalMoves(final Board board);
 
-
+    public Alliance getPieceAlliance() {
+        return pieceAlliance;
+    }
 }
 
