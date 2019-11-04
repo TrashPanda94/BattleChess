@@ -3,3 +3,8 @@ Version History
 1. Polymorphic design of Tile objects.
 
 2. Immutability for all EmptyTile objects.
+
+3.  Polymorphic design of the Piece class
+    Stub for Alliance, Board, Moce class
+    Make EmptyTile and OccupiedTile constructor private for the sake of immutability
+

@@ -7,20 +7,23 @@ import java.util.Map;
 
 public abstract class Tile {
 
-    protected final int tileCoordinate; // final => immutable
+    protected final int tileCoordinate; //final => immutable
 
-    private static final Map<Integer, EmptyTile> EMPTY_TILES = createAllPossibleEmptyTiles();
+    private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
 
     private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles() {
+
         final Map<Integer, EmptyTile> emptyTileMap = new HashMap<>();
+
         for(int i = 0; i<64; i++) {
             emptyTileMap.put(i, new EmptyTile(i));
         }
+
         return ImmutableMap.copyOf(emptyTileMap);  //created all the empty tiles
     }
 
     public static Tile createTile(final int tileCoordinate, final Piece piece) {
-        return piece != null? new OccupiedTile(tileCoordinate, piece): EMPTY_TILES.get(tileCoordinate);
+        return piece != null? new OccupiedTile(tileCoordinate, piece): EMPTY_TILES_CACHE.get(tileCoordinate);
     }
 
     private Tile(int tileCoordinate){
@@ -32,9 +35,10 @@ public abstract class Tile {
 
     // Empty tile is a tile with no Piece on it
     public static final class EmptyTile extends Tile{
-        EmptyTile(final int coordinate) {
+        private EmptyTile(final int coordinate) {
             super(coordinate);
         }
+
         @Override
         public boolean isTileOccupied(){return false;}
 
@@ -46,8 +50,10 @@ public abstract class Tile {
 
     // Occupied Tile has exactly one Piece on it
     public static final class OccupiedTile extends Tile {
+
         private final Piece pieceOnTile;
-        OccupiedTile(int coordinate, Piece pieceOnTile) {
+
+        private OccupiedTile(int coordinate, Piece pieceOnTile) {
             super(coordinate);
             this.pieceOnTile = pieceOnTile;
         }

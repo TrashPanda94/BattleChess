@@ -1,8 +1,23 @@
 package com.chess.engine.piece;
-public class Piece {
-    String name;
-    Piece(String name) {
-        this.name = name;
+
+import com.chess.engine.Alliance;
+import com.chess.engine.board.Board;
+import com.chess.engine.board.Move;
+
+import java.util.List;
+
+public abstract class Piece {
+    protected final int piecePosition;
+    protected final Alliance pieceAlliance;
+
+    Piece(final int piecePosition, final Alliance pieceAlliance) {
+        this.piecePosition = piecePosition;
+        this.pieceAlliance = pieceAlliance;
     }
+
+    // Calculate legal moves
+    public abstract List<Move> calculateLeagalMoves(final Board board);
+
+
 }
 
